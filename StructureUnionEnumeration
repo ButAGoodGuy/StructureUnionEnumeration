@@ -1,0 +1,82 @@
+// hello.cpp 
+//
+
+#include "pch.h"
+#include <iostream>
+struct inflatable				// structure declaration
+{
+	char name[20];
+	float volume;
+	double price;
+};
+union one4all {
+	int int_val;
+	long long_val;
+	double double_val;
+};
+enum spectrum {
+	red, orange, yellow, green
+};
+int main()
+{
+	using namespace std;
+
+	inflatable guests[2] =		// initializing an array of structs
+	{
+		{ "Bambi", 0.5, 21.99 },// first structure in array
+		{ "Godzilla", 2000, 565.99 }	// next structure in array
+	};
+	cout << "The guests " << guests[0].name << " and " << guests[1].name
+		<< "\nhave a combined volume of "
+		<< guests[0].volume + guests[1].volume << " cubic feet.\n";
+
+	inflatable guest =
+	{
+		"Glorious Gloria",		// name value
+		1.88,					// volume value
+		29.99					// price value
+	};	// guest is a structure variable of type inflatable
+// It's initialized to the indicated values
+	inflatable pal =
+	{
+		"Audacious Arthur",
+		3.12,
+		32.99
+	};	// pal is a second variable of type inflatable
+// NOTE: some implementations require using static inflatable guest
+	cout << "Expand your guest list with " << guest.name;
+	cout << " and " << pal.name << "!\n";
+	cout << "You can have both for $";
+	cout << guest.price + pal.price << "!\n";
+
+	inflatable choice;
+	choice = guest; 		// assign one structure to another
+	cout << "The choice: " << choice.name << " for $";
+	cout << choice.price << endl;
+
+	cout << endl;
+	cout << "**************************" << endl;
+	cout << endl;
+
+	one4all pail;
+	pail.int_val = 15;
+	cout << "The int_val of pail is " << pail.int_val << endl;
+	cout << "The double_val of pail is " << sizeof(pail.double_val) << " bytes.\n";
+
+	cout << endl;
+	cout << "*************************" << endl;
+	cout << endl;
+
+	spectrum band;
+	band = green;
+	cout << "The band green is " << band << endl;
+	int color = orange;
+	color = 1 + red;
+	band = spectrum(color);
+	cout << "The color of 'color = 1 + red' is " << band << endl;
+
+
+	system("pause");
+
+	return 0;
+}
